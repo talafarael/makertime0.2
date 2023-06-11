@@ -23,7 +23,8 @@ function inp() {
       change: `button${math}`,
       pid: `p${math}`,
       h5id: `h5${math}`,
-      true: "true",
+      true: false,
+      fill:'#ffffff'
     }),
   ];
 }
@@ -51,11 +52,12 @@ button.addEventListener("click", () => {
 
 function creat() {
   for (i = 0; i < OldItem.length; i++) {
-    bild(OldItem[i].tit, OldItem[i].val, OldItem[i].id,OldItem[i].true);
+    bild(OldItem[i].tit, OldItem[i].val, OldItem[i].id,OldItem[i].true, OldItem[i].fill);
   }
 }
 creat();
-function bild(name, title, ide,state) {
+function bild(name, title, ide,state,color) {
+
   let buttonClose = document.createElement("button");
   let div = document.createElement("div");
   let cardBody = document.createElement("div");
@@ -65,6 +67,7 @@ function bild(name, title, ide,state) {
   let divButton = document.createElement("div");
   let inputradio = document.createElement("input");
   let label=document.createElement("label");
+  let fill=document.createElement("input");
   div.classList.add("card");
   div.setAttribute("id", ide);
   
@@ -93,9 +96,14 @@ function bild(name, title, ide,state) {
   inputradio.setAttribute("type", "checkbox");
   changeButton.textContent = "change button";
   inputradio.classList.add("consoleToggle");
+  fill.setAttribute("type", "color");
+  div.style.background=color
   inputradio.appendChild(label);
   label.setAttribute("for", "checkbox");
-  inputradio.checked=state
+  divButton.appendChild(fill);
+  fill.setAttribute("id", ide);
+  inputradio.checked=Boolean(state)
+  fill.value=color
   if(state==true){
     p.classList.add('textder')
     h5.classList.add('textder')
@@ -103,6 +111,19 @@ function bild(name, title, ide,state) {
   h5.textContent = name;
   p.textContent = title;
  divbox1.appendChild(div);
+ fill.addEventListener("change",(event)=>{
+ let color
+ let id = event.target.id
+
+color = event.target.value 
+div.style.background=color
+for (i = 0; i < OldItem.length; i++) {
+  if (id == OldItem[i].id) {
+    OldItem[i].fill=color
+    localStorage.setItem("mas", JSON.stringify(OldItem));
+  }
+}
+ })
   inputradio.addEventListener("click", (e) => {
     let id = e.target.id;
     for (i = 0; i < OldItem.length; i++) {
