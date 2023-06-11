@@ -95,7 +95,11 @@ function bild(name, title, ide,state) {
   inputradio.classList.add("consoleToggle");
   inputradio.appendChild(label);
   label.setAttribute("for", "checkbox");
-  inputradio.setAttribute("value", 'false');
+  inputradio.checked=state
+  if(state==true){
+    p.classList.add('textder')
+    h5.classList.add('textder')
+  }
   h5.textContent = name;
   p.textContent = title;
  divbox1.appendChild(div);
