@@ -211,11 +211,11 @@ for (i = 0; i < OldItem.length; i++) {
         p.textContent = changetitile.value;
         localStorage.setItem("mas", JSON.stringify(OldItem));
 
-        console.log(OldItem[i].pid);
+        // console.log(OldItem[i].pid);
       }
     }
   });
 }
 
 localStorage.setItem("mas", JSON.stringify(OldItem));
-console.log(OldItem);
+// console.log(OldItem);
